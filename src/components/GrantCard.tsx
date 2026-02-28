@@ -1,5 +1,6 @@
 import { Calendar, MapPin, TrendingUp, Bookmark, ArrowUpRight } from 'lucide-react'
 import type { Grant } from '../data/grants'
+import { useNavigate } from 'react-router-dom'
 
 type Props = { grant: Grant }
 
@@ -18,12 +19,15 @@ const categoryColors: Record<string, string> = {
 }
 
 export default function GrantCard({ grant }: Props) {
+    const navigate = useNavigate()
     const status   = statusConfig[grant.status]
     const catColor = categoryColors[grant.category] ?? 'bg-white/5 text-white/50'
 
     return (
-        <div className="bg-[#0c1e33] border border-[rgba(255,255,255,0.06)] rounded-xl p-5 hover:border-[rgba(0,198,167,0.25)] hover:shadow-[0_8px_32px_rgba(0,0,0,0.3)] transition-all duration-200 group cursor-pointer flex flex-col gap-4">
-
+        <div
+            onClick={() => navigate(`/grant/${grant.id}`)}
+            className="bg-[#0c1e33] border border-[rgba(255,255,255,0.06)] rounded-xl p-5 hover:border-[rgba(0,198,167,0.25)] hover:shadow-[0_8px_32px_rgba(0,0,0,0.3)] transition-all duration-200 group cursor-pointer flex flex-col gap-4"
+        >
             {/* Top */}
             <div className="flex items-start justify-between gap-3">
                 <div className="flex-1 min-w-0">
@@ -40,6 +44,7 @@ export default function GrantCard({ grant }: Props) {
                     </h3>
                     <p className="text-[12.5px] text-[#3d5a72] mt-0.5">{grant.provider}</p>
                 </div>
+
                 <button
                     onClick={e => e.stopPropagation()}
                     className="w-8 h-8 flex items-center justify-center rounded-lg border border-[rgba(255,255,255,0.08)] hover:bg-[rgba(0,198,167,0.1)] hover:border-[rgba(0,198,167,0.3)] transition-all flex-shrink-0"
@@ -87,7 +92,10 @@ export default function GrantCard({ grant }: Props) {
                         <TrendingUp size={11} className="text-[#00c6a7]" />
                         <span className="text-[11.5px] font-semibold text-[#00c6a7]">{grant.matchScore}% совпадение</span>
                     </div>
-                    <button className="flex items-center gap-1 px-3 py-1.5 bg-[#00c6a7] text-[#07111f] text-[12px] font-bold rounded-lg hover:bg-[#00ddb9] active:scale-95 transition-all">
+                    <button
+                        onClick={e => e.stopPropagation()}
+                        className="flex items-center gap-1 px-3 py-1.5 bg-[#00c6a7] text-[#07111f] text-[12px] font-bold rounded-lg hover:bg-[#00ddb9] active:scale-95 transition-all"
+                    >
                         Подать <ArrowUpRight size={12} />
                     </button>
                 </div>

@@ -7,7 +7,7 @@ const categories  = ['Все', 'Наука', 'Образование', 'IT / Tec
 const countries   = ['Все страны', 'Казахстан', 'ЕС', 'Международный', 'США / Международный']
 const sortOptions = ['По совпадению', 'По дедлайну', 'По сумме']
 
-export default function Dashboard() {
+export default function Dashboard({ search = '' }: { search?: string }) {
     const [activeCategory, setActiveCategory] = useState('Все')
     const [activeCountry, setActiveCountry]   = useState('Все страны')
     const [activeSort, setActiveSort]         = useState('По совпадению')
@@ -15,6 +15,16 @@ export default function Dashboard() {
     const filtered: Grant[] = grants
         .filter(g => activeCategory === 'Все' || g.category === activeCategory)
         .filter(g => activeCountry  === 'Все страны' || g.country === activeCountry)
+        .filter(g => {
+            if (!search.trim()) return true
+            const q = search.toLowerCase()
+            return (
+                g.title.toLowerCase().includes(q) ||
+                g.provider.toLowerCase().includes(q) ||
+                g.category.toLowerCase().includes(q) ||
+                g.tags.some(t => t.toLowerCase().includes(q))
+            )
+        })
         .sort((a, b) => {
             if (activeSort === 'По совпадению') return b.matchScore - a.matchScore
             if (activeSort === 'По дедлайну')  return a.daysLeft - b.daysLeft
@@ -31,17 +41,20 @@ export default function Dashboard() {
                     Добро пожаловать, Алуа 👋
                 </h1>
                 <p className="text-[14px] text-[#3d5a72] mt-1">
-                    Найдено <span className="text-[#00c6a7] font-semibold">{filtered.length}</span> возможностей под ваш профиль
+                    {search
+                        ? <>Результаты по запросу «<span className="text-white">{search}</span>»: <span className="text-[#00c6a7] font-semibold">{filtered.length}</span> грантов</>
+                        : <>Найдено <span className="text-[#00c6a7] font-semibold">{filtered.length}</span> возможностей под ваш профиль</>
+                    }
                 </p>
             </div>
 
             {/* Stats */}
             <div className="px-8 mt-6 grid grid-cols-4 gap-4">
                 {[
-                    { icon: TrendingUp,  label: 'Грантов в базе',  value: '12 400+', color: 'text-[#00c6a7]',  bg: 'bg-[rgba(0,198,167,0.08)]'   },
-                    { icon: Sparkles,    label: 'AI-совпадений',   value: '34',      color: 'text-purple-400', bg: 'bg-purple-900/20'             },
-                    { icon: Clock,       label: 'Дедлайн скоро',   value: '3',       color: 'text-amber-400',  bg: 'bg-amber-900/20'              },
-                    { icon: CheckCircle, label: 'Поданных заявок', value: '12',      color: 'text-green-400',  bg: 'bg-green-900/20'              },
+                    { icon: TrendingUp,  label: 'Грантов в базе',  value: '12 400+', color: 'text-[#00c6a7]',  bg: 'bg-[rgba(0,198,167,0.08)]' },
+                    { icon: Sparkles,    label: 'AI-совпадений',   value: '34',      color: 'text-purple-400', bg: 'bg-purple-900/20'          },
+                    { icon: Clock,       label: 'Дедлайн скоро',   value: '3',       color: 'text-amber-400',  bg: 'bg-amber-900/20'           },
+                    { icon: CheckCircle, label: 'Поданных заявок', value: '12',      color: 'text-green-400',  bg: 'bg-green-900/20'           },
                 ].map(({ icon: Icon, label, value, color, bg }) => (
                     <div key={label} className="bg-[#0c1e33] border border-[rgba(255,255,255,0.06)] rounded-xl px-5 py-4 flex items-center gap-4">
                         <div className={`w-10 h-10 ${bg} rounded-lg flex items-center justify-center flex-shrink-0`}>
@@ -116,6 +129,11 @@ export default function Dashboard() {
             <div className="px-8 mt-4">
                 <p className="text-[12px] text-[#3d5a72]">
                     Показано <span className="font-medium text-[#7a9bb5]">{filtered.length}</span> из {grants.length} результатов
+                    {search && (
+                        <button onClick={() => {}} className="ml-3 text-[#00c6a7] hover:underline">
+                            Сбросить поиск ×
+                        </button>
+                    )}
                 </p>
             </div>
 
@@ -125,8 +143,9 @@ export default function Dashboard() {
                     ? filtered.map(grant => <GrantCard key={grant.id} grant={grant} />)
                     : (
                         <div className="col-span-3 text-center py-20 text-[#3d5a72]">
-                            <p className="text-[15px]">Ничего не найдено</p>
-                            <p className="text-[13px] mt-1">Попробуйте изменить фильтры</p>
+                            <div className="text-4xl mb-4">🔍</div>
+                            <p className="text-[15px] text-[#7a9bb5] font-medium">Ничего не найдено</p>
+                            <p className="text-[13px] mt-1">Попробуйте изменить фильтры или поисковый запрос</p>
                         </div>
                     )
                 }
