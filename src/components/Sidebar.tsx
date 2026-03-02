@@ -1,39 +1,49 @@
-import { LayoutDashboard, Search, Star, FileText, BarChart2, Settings, GraduationCap, Briefcase, ChevronRight } from 'lucide-react'
+import {
+    LayoutDashboard, Search, Star, FileText,
+    BarChart2, Settings, GraduationCap, Briefcase, ChevronRight
+} from 'lucide-react'
+import { useNavigate, useLocation } from 'react-router-dom'
 
-const navItems = [
-    { icon: LayoutDashboard, label: 'Главная', active: true },
-    { icon: Search,          label: 'Поиск грантов', badge: '12K+' },
-    { icon: GraduationCap,   label: 'Стипендии' },
-    { icon: Briefcase,       label: 'Стажировки' },
-    { icon: Star,            label: 'Избранное', badge: '3' },
-]
-
-const appItems = [
-    { icon: FileText,      label: 'Активные',  badge: '2', badgeColor: 'amber' },
-    { icon: ChevronRight,  label: 'Поданные' },
-    { icon: FileText,      label: 'Черновики' },
-]
-
-const bottomItems = [
-    { icon: BarChart2, label: 'Аналитика' },
-    { icon: Settings,  label: 'Профиль' },
-]
-
-type NavItemProps = {
+type NavItemType = {
     icon: React.ElementType
     label: string
-    active?: boolean
     badge?: string
     badgeColor?: string
+    path?: string
 }
 
-function NavItem({ icon: Icon, label, active, badge, badgeColor }: NavItemProps) {
+const navItems: NavItemType[] = [
+    { icon: LayoutDashboard, label: 'Главная',      path: '/dashboard' },
+    { icon: Search,          label: 'Поиск грантов', badge: '12K+',    path: '/dashboard' },
+    { icon: GraduationCap,   label: 'Стипендии' },
+    { icon: Briefcase,       label: 'Стажировки' },
+    { icon: Star,            label: 'Избранное',     badge: '3' },
+]
+
+const appItems: NavItemType[] = [
+    { icon: FileText,     label: 'Активные',  badge: '2', badgeColor: 'amber' },
+    { icon: ChevronRight, label: 'Поданные' },
+    { icon: FileText,     label: 'Черновики' },
+]
+
+const bottomItems: NavItemType[] = [
+    { icon: BarChart2, label: 'Аналитика', path: '/analytics' },
+    { icon: Settings,  label: 'Профиль',   path: '/profile'   },
+]
+
+function NavItem({ icon: Icon, label, badge, badgeColor, path }: NavItemType) {
+    const navigate = useNavigate()
+    const location = useLocation()
+    const active = !!path && location.pathname === path
+
     return (
-        <div className={`flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer transition-all duration-150
-      ${active
-            ? 'bg-[rgba(0,198,167,0.12)] text-[#00c6a7] border border-[rgba(0,198,167,0.2)]'
-            : 'text-[#7a9bb5] hover:bg-[#0c1e33] hover:text-white'
-        }`}
+        <div
+            onClick={() => path && navigate(path)}
+            className={`flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer transition-all duration-150
+        ${active
+                ? 'bg-[rgba(0,198,167,0.12)] text-[#00c6a7] border border-[rgba(0,198,167,0.2)]'
+                : 'text-[#7a9bb5] hover:bg-[#0c1e33] hover:text-white'
+            }`}
         >
             <Icon size={16} className="flex-shrink-0" />
             <span className="text-[13.5px] font-medium flex-1">{label}</span>
@@ -53,10 +63,16 @@ function NavItem({ icon: Icon, label, active, badge, badgeColor }: NavItemProps)
 }
 
 export default function Sidebar() {
+    const navigate = useNavigate()
+
     return (
         <aside className="w-60 bg-[#050e1a] border-r border-[rgba(255,255,255,0.06)] flex flex-col h-screen sticky top-0">
+
             {/* Logo */}
-            <div className="px-5 py-5 border-b border-[rgba(255,255,255,0.06)]">
+            <div
+                className="px-5 py-5 border-b border-[rgba(255,255,255,0.06)] cursor-pointer"
+                onClick={() => navigate('/')}
+            >
                 <div className="flex items-center gap-2.5">
                     <div className="w-8 h-8 bg-[#00c6a7] rounded-lg flex items-center justify-center text-[#07111f] font-bold text-sm flex-shrink-0"
                          style={{ fontFamily: "'Instrument Serif', serif" }}>
@@ -96,7 +112,10 @@ export default function Sidebar() {
 
             {/* User */}
             <div className="px-3 py-3 border-t border-[rgba(255,255,255,0.06)]">
-                <div className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-[#0c1e33] cursor-pointer transition-all">
+                <div
+                    className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-[#0c1e33] cursor-pointer transition-all"
+                    onClick={() => navigate('/profile')}
+                >
                     <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#00c6a7] to-[#7c3aed] flex items-center justify-center text-white text-xs font-bold flex-shrink-0">
                         АИ
                     </div>
