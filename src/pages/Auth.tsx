@@ -25,10 +25,8 @@ export default function Auth() {
     return (
         <div className="min-h-screen bg-[#07111f] flex overflow-hidden">
 
-            {/* ── LEFT PANEL ─────────────────────────────────── */}
             <div className="hidden lg:flex w-[52%] relative flex-col justify-between p-12 overflow-hidden">
 
-                {/* Grid background */}
                 <div className="absolute inset-0"
                      style={{
                          backgroundImage: `linear-gradient(rgba(0,198,167,0.04) 1px, transparent 1px),
@@ -37,7 +35,6 @@ export default function Auth() {
                      }}
                 />
 
-                {/* Glow */}
                 <div className="absolute top-[-100px] left-[-100px] w-[500px] h-[500px] rounded-full"
                      style={{ background: 'radial-gradient(circle, rgba(0,198,167,0.08) 0%, transparent 70%)' }}
                 />
@@ -45,7 +42,6 @@ export default function Auth() {
                      style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.06) 0%, transparent 70%)' }}
                 />
 
-                {/* Logo */}
                 <div className="relative flex items-center gap-3">
                     <div className="w-9 h-9 bg-[#00c6a7] rounded-xl flex items-center justify-center text-[#07111f] font-bold text-lg"
                          style={{ fontFamily: "'Instrument Serif', serif" }}>
@@ -57,8 +53,7 @@ export default function Auth() {
           </span>
                 </div>
 
-                {/* Center content */}
-                <div className="relative">
+                     <div className="relative">
                     <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[rgba(0,198,167,0.2)] bg-[rgba(0,198,167,0.06)] text-[#00c6a7] text-xs font-semibold mb-6">
                         <Sparkles size={11} />
                         Платформа с AI-поиском грантов
@@ -76,7 +71,6 @@ export default function Auth() {
                         и стажировки из 12 000+ возможностей.
                     </p>
 
-                    {/* Stats */}
                     <div className="flex gap-8 mt-10">
                         {[
                             { val: '12K+',  label: 'Грантов' },
@@ -94,39 +88,16 @@ export default function Auth() {
                     </div>
                 </div>
 
-                {/* Bottom testimonial */}
-                <div className="relative bg-[#0c1e33] border border-[rgba(255,255,255,0.06)] rounded-2xl p-5">
-                    <div className="flex items-start gap-3">
-                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#00c6a7] to-[#8b5cf6] flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
-                            АК
-                        </div>
-                        <div>
-                            <p className="text-[13px] text-[#b8d0e0] leading-relaxed">
-                                "GrantHub.AI нашёл для меня грант EU Horizon за 5 минут.
-                                Раньше я тратила на это недели поиска."
-                            </p>
-                            <div className="mt-2 text-xs text-[#3d5a72]">
-                                Айгерим К. — PhD, IT Research
-                            </div>
-                        </div>
-                    </div>
-                    <div className="flex gap-0.5 mt-3">
-                        {[1,2,3,4,5].map(i => (
-                            <span key={i} className="text-[#00c6a7] text-xs">★</span>
-                        ))}
-                    </div>
-                </div>
+
+
             </div>
 
-            {/* ── RIGHT PANEL — FORM ─────────────────────────── */}
             <div className="flex-1 flex items-center justify-center px-8 py-12 relative">
                 <div className="absolute inset-0 bg-[#050e1a]" />
 
                 <div className="relative w-full max-w-sm">
 
-                    {/* Header */}
                     <div className="mb-8">
-                        {/* Mobile logo */}
                         <div className="flex lg:hidden items-center gap-2 mb-8">
                             <div className="w-8 h-8 bg-[#00c6a7] rounded-lg flex items-center justify-center text-[#07111f] font-bold text-sm">G</div>
                             <span className="text-lg font-bold text-white" style={{ fontFamily: "'Instrument Serif', serif" }}>
@@ -136,7 +107,7 @@ export default function Auth() {
 
                         <h2 className="text-2xl font-bold text-white mb-1"
                             style={{ fontFamily: "'Instrument Serif', serif" }}>
-                            {mode === 'login' ? 'С возвращением 👋' : 'Создать аккаунт ✦'}
+                            {mode === 'login' ? 'С возвращением' : 'Создать аккаунт'}
                         </h2>
                         <p className="text-sm text-[#3d5a72]">
                             {mode === 'login'
@@ -145,7 +116,6 @@ export default function Auth() {
                         </p>
                     </div>
 
-                    {/* Social buttons */}
                     <div className="flex gap-3 mb-6">
                         <button className="flex-1 flex items-center justify-center gap-2 py-2.5 border border-[rgba(255,255,255,0.08)] rounded-lg text-sm text-[#7a9bb5] hover:bg-[#0c1e33] hover:text-white transition-all">
                             <svg width="16" height="16" viewBox="0 0 24 24">
@@ -162,17 +132,15 @@ export default function Auth() {
                         </button>
                     </div>
 
-                    {/* Divider */}
+
                     <div className="flex items-center gap-3 mb-6">
                         <div className="flex-1 h-px bg-[rgba(255,255,255,0.06)]" />
                         <span className="text-xs text-[#3d5a72]">или через email</span>
                         <div className="flex-1 h-px bg-[rgba(255,255,255,0.06)]" />
                     </div>
 
-                    {/* Form */}
                     <div className="flex flex-col gap-4">
 
-                        {/* Name field — register only */}
                         {mode === 'register' && (
                             <div>
                                 <label className="block text-xs font-semibold text-[#7a9bb5] mb-1.5 uppercase tracking-wider">
@@ -191,7 +159,6 @@ export default function Auth() {
                             </div>
                         )}
 
-                        {/* Email */}
                         <div>
                             <label className="block text-xs font-semibold text-[#7a9bb5] mb-1.5 uppercase tracking-wider">
                                 Email
@@ -207,8 +174,6 @@ export default function Auth() {
                                 />
                             </div>
                         </div>
-
-                        {/* Password */}
                         <div>
                             <div className="flex justify-between mb-1.5">
                                 <label className="block text-xs font-semibold text-[#7a9bb5] uppercase tracking-wider">
@@ -237,7 +202,6 @@ export default function Auth() {
                                 </button>
                             </div>
 
-                            {/* Password strength — register only */}
                             {mode === 'register' && form.password.length > 0 && (
                                 <div className="mt-2">
                                     <div className="flex gap-1">
@@ -258,7 +222,6 @@ export default function Auth() {
                             )}
                         </div>
 
-                        {/* Submit */}
                         <button
                             onClick={handleSubmit}
                             disabled={loading}
@@ -275,7 +238,6 @@ export default function Auth() {
                         </button>
                     </div>
 
-                    {/* Switch mode */}
                     <p className="text-center text-sm text-[#3d5a72] mt-6">
                         {mode === 'login' ? 'Нет аккаунта?' : 'Уже есть аккаунт?'}{' '}
                         <button
@@ -286,7 +248,6 @@ export default function Auth() {
                         </button>
                     </p>
 
-                    {/* Terms */}
                     {mode === 'register' && (
                         <p className="text-center text-[11px] text-[#3d5a72] mt-4 leading-relaxed">
                             Регистрируясь, вы соглашаетесь с{' '}

@@ -1,81 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-import { Sparkles, ArrowRight, CheckCircle, TrendingUp, Search, FileText, BarChart2, Link } from 'lucide-react'
-
-const features = [
-    {
-        icon: Search,
-        title: 'Семантический поиск',
-        color: '#00c6a7',
-        bg: 'rgba(0,198,167,0.08)',
-        desc: 'BERT и Word2Vec понимают смысл запроса, расширяют ключевые слова и ранжируют по релевантности.'
-    },
-    {
-        icon: Sparkles,
-        title: 'AI-рекомендации',
-        color: '#8b5cf6',
-        bg: 'rgba(139,92,246,0.08)',
-        desc: 'Персональный подбор на основе профиля, истории поиска и поведения. Обновляется в реальном времени.'
-    },
-    {
-        icon: FileText,
-        title: 'Автоматизация заявок',
-        color: '#f5a623',
-        bg: 'rgba(245,166,35,0.08)',
-        desc: 'LLM генерирует черновики, мотивационные письма. Eligibility Check проверяет соответствие условиям.'
-    },
-    {
-        icon: BarChart2,
-        title: 'Аналитика & Big Data',
-        color: '#22c55e',
-        bg: 'rgba(34,197,94,0.08)',
-        desc: 'Карта трендов по регионам и секторам. Мониторинг доноров. Дашборды с дедлайнами и статистикой.'
-    },
-    {
-        icon: TrendingUp,
-        title: 'Агрегация данных',
-        color: '#3b82f6',
-        bg: 'rgba(59,130,246,0.08)',
-        desc: 'ML-классификация источников, NLP-парсинг PDF и HTML, автоматическая дедупликация из 10+ платформ.'
-    },
-    {
-        icon: Link,
-        title: 'Интеграции',
-        color: '#ef4444',
-        bg: 'rgba(239,68,68,0.08)',
-        desc: 'Telegram, Gmail, Google Calendar, Notion. GPT API, LangChain. Прямые интеграции с EU Portal.'
-    },
-]
-
-const steps = [
-    { num: '01', title: 'Создайте профиль',        desc: 'Укажите интересы, специальность и страну. ИИ сразу строит модель ваших предпочтений.' },
-    { num: '02', title: 'Получите рекомендации',   desc: 'Алгоритм анализирует 12 000+ возможностей и подбирает те, что подходят именно вам.' },
-    { num: '03', title: 'Проверьте соответствие',  desc: 'Eligibility Check AI анализирует условия гранта и выдаёт процент совпадения с вашим профилем.' },
-    { num: '04', title: 'Подайте заявку',          desc: 'LLM генерирует черновик заявки и мотивационное письмо на основе вашего профиля.' },
-]
-
-const testimonials = [
-    {
-        name: 'Айгерим К.',
-        role: 'PhD, IT Research · НУ',
-        initials: 'АК',
-        gradient: 'from-[#00c6a7] to-[#8b5cf6]',
-        text: 'GrantHub.AI нашёл для меня EU Horizon за 5 минут. Раньше я тратила на это недели поиска.',
-    },
-    {
-        name: 'Данияр С.',
-        role: 'Стартап-основатель · Алматы',
-        initials: 'ДС',
-        gradient: 'from-[#f5a623] to-[#ef4444]',
-        text: 'AI подобрал 8 грантов под наш EdTech стартап. Подали на 3, получили одобрение по двум.',
-    },
-    {
-        name: 'Мадина Т.',
-        role: 'Исследователь · КазНУ',
-        initials: 'МТ',
-        gradient: 'from-[#3b82f6] to-[#8b5cf6]',
-        text: 'Стипендию Болашак нашла здесь за 2 минуты. Сервис сам заполнил черновик заявки.',
-    },
-]
+import {  ArrowRight } from 'lucide-react'
 
 export default function Landing() {
     const navigate = useNavigate()
@@ -95,14 +19,7 @@ export default function Landing() {
           </span>
                 </div>
 
-                <div className="hidden md:flex items-center gap-8">
-                    {['Функции', 'Как работает', 'Отзывы'].map(link => (
-                        <a key={link} href={`#${link}`}
-                           className="text-[13.5px] text-[#7a9bb5] hover:text-white transition-colors cursor-pointer">
-                            {link}
-                        </a>
-                    ))}
-                </div>
+
 
                 <div className="flex items-center gap-3">
                     <button
@@ -197,12 +114,9 @@ export default function Landing() {
                         </div>
                     </div>
 
-                    {/* Right — Browser mockup */}
                     <div className="relative" style={{ animation: 'fadeLeft 0.7s 0.3s ease both', opacity: 0, animationFillMode: 'forwards' }}>
-                        {/* Browser frame */}
                         <div className="bg-[#0c1e33] border border-[rgba(255,255,255,0.08)] rounded-2xl overflow-hidden shadow-[0_40px_80px_rgba(0,0,0,0.5)]">
 
-                            {/* Browser bar */}
                             <div className="flex items-center gap-3 px-4 py-3 bg-[#050e1a] border-b border-[rgba(255,255,255,0.06)]">
                                 <div className="flex gap-1.5">
                                     <div className="w-3 h-3 rounded-full bg-[#ff5f57]" />
@@ -214,10 +128,8 @@ export default function Landing() {
                                 </div>
                             </div>
 
-                            {/* Dashboard preview inside browser */}
                             <div className="flex" style={{ height: '360px' }}>
 
-                                {/* Mini sidebar */}
                                 <div className="w-36 bg-[#050e1a] border-r border-[rgba(255,255,255,0.05)] p-3 flex flex-col gap-1 flex-shrink-0">
                                     {[
                                         { icon: '🏠', label: 'Главная',  active: true  },
@@ -237,9 +149,8 @@ export default function Landing() {
                                     ))}
                                 </div>
 
-                                {/* Mini content */}
                                 <div className="flex-1 p-4 overflow-hidden flex flex-col gap-3">
-                                    {/* Search */}
+
                                     <div className="flex gap-2">
                                         <div className="flex-1 bg-[#07111f] border border-[rgba(255,255,255,0.06)] rounded-lg px-3 py-1.5 text-[10.5px] text-[#3d5a72]">
                                             🔍  Найти гранты...
@@ -249,7 +160,6 @@ export default function Landing() {
                                         </div>
                                     </div>
 
-                                    {/* Filter chips */}
                                     <div className="flex gap-1.5">
                                         {['Казахстан ×', 'IT / Tech ×', 'до 1 мая ×'].map(chip => (
                                             <span key={chip} className="px-2 py-0.5 bg-[rgba(0,198,167,0.08)] border border-[rgba(0,198,167,0.15)] rounded-full text-[9.5px] text-[#00c6a7]">
@@ -308,173 +218,7 @@ export default function Landing() {
                 </div>
             </section>
 
-            <section id="Функции" className="py-28 px-12">
-                <div className="max-w-7xl mx-auto">
-                    <div className="text-center mb-16">
-                        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[rgba(0,198,167,0.2)] bg-[rgba(0,198,167,0.06)] text-[#00c6a7] text-xs font-semibold mb-5">
-                            Возможности
-                        </div>
-                        <h2 className="text-[42px] font-bold text-white leading-tight mb-4"
-                            style={{ fontFamily: "'Instrument Serif', serif", letterSpacing: '-1.5px' }}>
-                            Всё необходимое в одной платформе
-                        </h2>
-                        <p className="text-[16px] text-[#7a9bb5] max-w-lg mx-auto font-light">
-                            Интеллектуальные инструменты для поиска, анализа и подачи заявок на гранты
-                        </p>
-                    </div>
 
-                    <div className="grid grid-cols-3 gap-px bg-[rgba(255,255,255,0.05)] rounded-2xl overflow-hidden border border-[rgba(255,255,255,0.05)]">
-                        {features.map(({ icon: Icon, title, color, bg, desc }) => (
-                            <div key={title}
-                                 className="bg-[#0c1e33] p-8 group hover:bg-[#112540] transition-all duration-300 relative overflow-hidden cursor-default">
-
-                                <div className="absolute bottom-0 left-0 right-0 h-0.5 transition-all duration-300 scale-x-0 group-hover:scale-x-100 origin-left"
-                                     style={{ background: color }} />
-
-                                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 transition-all duration-300 group-hover:scale-110"
-                                     style={{ background: bg, border: `1px solid ${color}20` }}>
-                                    <Icon size={22} style={{ color }} />
-                                </div>
-                                <h3 className="text-[16px] font-bold text-white mb-3 tracking-tight"
-                                    style={{ fontFamily: "'Instrument Serif', serif" }}>
-                                    {title}
-                                </h3>
-                                <p className="text-[13px] text-[#7a9bb5] leading-relaxed">{desc}</p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            <section id="Как работает" className="py-24 px-12 bg-[#050e1a]">
-                <div className="max-w-7xl mx-auto">
-                    <div className="text-center mb-16">
-                        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[rgba(0,198,167,0.2)] bg-[rgba(0,198,167,0.06)] text-[#00c6a7] text-xs font-semibold mb-5">
-                            Как работает
-                        </div>
-                        <h2 className="text-[42px] font-bold text-white leading-tight"
-                            style={{ fontFamily: "'Instrument Serif', serif", letterSpacing: '-1.5px' }}>
-                            Четыре шага до нужного гранта
-                        </h2>
-                    </div>
-
-                    <div className="grid grid-cols-4 gap-8 relative">
-
-                        <div className="absolute top-7 left-[calc(12.5%+24px)] right-[calc(12.5%+24px)] h-px"
-                             style={{ background: 'linear-gradient(90deg, transparent, rgba(0,198,167,0.3), transparent)' }} />
-
-                        {steps.map(({ num, title, desc }) => (
-                            <div key={num} className="flex flex-col gap-5">
-                                <div className="w-14 h-14 rounded-2xl bg-[#0c1e33] border border-[rgba(0,198,167,0.2)] flex items-center justify-center relative z-10"
-                                     style={{ fontFamily: "'Instrument Serif', serif" }}>
-                                    <span className="text-2xl font-bold text-[#00c6a7]">{num}</span>
-                                </div>
-                                <div>
-                                    <h3 className="text-[16px] font-bold text-white mb-2"
-                                        style={{ fontFamily: "'Instrument Serif', serif" }}>
-                                        {title}
-                                    </h3>
-                                    <p className="text-[13px] text-[#7a9bb5] leading-relaxed">{desc}</p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            <section id="Отзывы" className="py-24 px-12">
-                <div className="max-w-7xl mx-auto">
-                    <div className="text-center mb-14">
-                        <h2 className="text-[42px] font-bold text-white"
-                            style={{ fontFamily: "'Instrument Serif', serif", letterSpacing: '-1.5px' }}>
-                            Что говорят пользователи
-                        </h2>
-                    </div>
-
-                    <div className="grid grid-cols-3 gap-6">
-                        {testimonials.map(({ name, role, initials, gradient, text }) => (
-                            <div key={name}
-                                 className="bg-[#0c1e33] border border-[rgba(255,255,255,0.06)] rounded-2xl p-6 hover:border-[rgba(0,198,167,0.2)] transition-all duration-300">
-                                {/* Stars */}
-                                <div className="flex gap-0.5 mb-4">
-                                    {[1,2,3,4,5].map(i => (
-                                        <span key={i} className="text-[#00c6a7] text-sm">★</span>
-                                    ))}
-                                </div>
-                                <p className="text-[14px] text-[#b8d0e0] leading-relaxed mb-5">"{text}"</p>
-                                <div className="flex items-center gap-3">
-                                    <div className={`w-10 h-10 rounded-full bg-gradient-to-br ${gradient} flex items-center justify-center text-white text-sm font-bold flex-shrink-0`}>
-                                        {initials}
-                                    </div>
-                                    <div>
-                                        <div className="text-[13px] font-semibold text-white">{name}</div>
-                                        <div className="text-[11px] text-[#3d5a72]">{role}</div>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            <section className="py-24 px-12">
-                <div className="max-w-4xl mx-auto text-center relative">
-                    <div className="absolute inset-0 rounded-3xl"
-                         style={{ background: 'radial-gradient(ellipse at center, rgba(0,198,167,0.08) 0%, transparent 70%)' }} />
-
-                    <div className="relative bg-[#0c1e33] border border-[rgba(0,198,167,0.2)] rounded-3xl px-12 py-16">
-                        <div className="w-14 h-14 bg-[#00c6a7] rounded-2xl flex items-center justify-center mx-auto mb-6">
-                            <Sparkles size={26} className="text-[#07111f]" />
-                        </div>
-                        <h2 className="text-[40px] font-bold text-white mb-4"
-                            style={{ fontFamily: "'Instrument Serif', serif", letterSpacing: '-1.5px' }}>
-                            Начни прямо сейчас
-                        </h2>
-                        <p className="text-[16px] text-[#7a9bb5] mb-8 font-light">
-                            Регистрация бесплатна. AI-подбор начинается сразу после создания профиля.
-                        </p>
-
-                        <div className="flex items-center justify-center gap-4 mb-8">
-                            <button
-                                onClick={() => navigate('/auth')}
-                                className="flex items-center gap-2 px-8 py-4 bg-[#00c6a7] text-[#07111f] font-bold rounded-xl hover:bg-[#00ddb9] hover:-translate-y-0.5 hover:shadow-[0_12px_32px_rgba(0,198,167,0.3)] transition-all text-[15px]">
-                                Зарегистрироваться бесплатно <ArrowRight size={16} />
-                            </button>
-                            <button
-                                onClick={() => navigate('/')}
-                                className="flex items-center gap-2 px-8 py-4 border border-[rgba(255,255,255,0.1)] text-[#b8d0e0] font-medium rounded-xl hover:bg-[#112540] transition-all text-[15px]">
-                                Смотреть демо
-                            </button>
-                        </div>
-
-                        <div className="flex items-center justify-center gap-6 text-[12.5px] text-[#3d5a72]">
-                            {['Без кредитной карты', 'Бесплатный доступ к 12K+ грантов', 'AI-подбор с первого дня'].map(item => (
-                                <span key={item} className="flex items-center gap-1.5">
-                  <CheckCircle size={12} className="text-[#00c6a7]" /> {item}
-                </span>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-
-            <footer className="border-t border-[rgba(255,255,255,0.06)] px-12 py-10">
-                <div className="max-w-7xl mx-auto flex items-center justify-between">
-                    <div className="flex items-center gap-2.5">
-                        <div className="w-7 h-7 bg-[#00c6a7] rounded-lg flex items-center justify-center text-[#07111f] font-bold text-xs">G</div>
-                        <span className="text-[15px] font-bold" style={{ fontFamily: "'Instrument Serif', serif" }}>
-              Grant<span className="text-[#00c6a7]">Hub</span>.AI
-            </span>
-                    </div>
-                    <div className="flex gap-8">
-                        {['О проекте', 'API', 'Конфиденциальность', 'Контакты'].map(link => (
-                            <a key={link} href="#" className="text-[12.5px] text-[#3d5a72] hover:text-white transition-colors">{link}</a>
-                        ))}
-                    </div>
-                    <p className="text-[12px] text-[#3d5a72]">© 2025 GrantHub.AI</p>
-                </div>
-            </footer>
 
             <style>{`
         @keyframes fadeUp {
